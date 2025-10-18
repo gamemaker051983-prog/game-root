@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSMANLI - MMORPG Игра</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .logo {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            margin-bottom: 10px;
+            font-family: 'Cinzel', serif;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+        
+        .description {
+            font-size: 1.1rem;
+            color: #aaa;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .game-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .game-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #FFD700;
+            margin-bottom: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 20px 40px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, #4a5568, #2d3748);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            font-size: 1.1rem;
+            padding: 15px 30px;
+        }
+        
+        .btn-secondary:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .event-banner {
+            background: rgba(220, 38, 38, 0.2);
+            border: 2px solid #dc2626;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .event-text {
+            color: #dc2626;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .news-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .news-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #FFD700;
+            transition: all 0.3s ease;
+        }
+        
+        .news-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .news-title {
+            color: #FFD700;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .news-date {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .news-content {
+            color: #ccc;
+            line-height: 1.6;
+        }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .login-panel {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .login-title {
+            font-size: 1.5rem;
+            color: #FFD700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-label {
+            display: block;
+            color: #fff;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #FFD700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+        
+        .form-input::placeholder {
+            color: #888;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        
+        .checkbox {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .checkbox-label {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        .stats-panel {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .stats-title {
+            font-size: 1.3rem;
+            color: #FFD700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            color: #FFD700;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            color: #ccc;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        .info-panel {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .info-title {
+            font-size: 1.2rem;
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+        
+        .info-text {
+            color: #ccc;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        
+        .rating-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .rating-list li {
+            color: #fff;
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .rating-list li:before {
+            content: "•";
+            color: #FFD700;
+            position: absolute;
+            left: 0;
+        }
+        
+        .game-interface {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a1a2e;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .game-header {
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            justify-content: space-between;
+        }
+        
+        .game-logo {
+            font-size: 1.5rem;
+            color: #FFD700;
+            font-weight: bold;
+        }
+        
+        .game-nav {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            padding: 8px 16px;
+            background: rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover, .nav-btn.active {
+            background: rgba(255, 215, 0, 0.3);
+        }
+        
+        .game-content {
+            height: calc(100vh - 60px);
+            display: flex;
+        }
+        
+        .game-main {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .game-sidebar {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .character-panel {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .character-name {
+            font-size: 1.3rem;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+        
+        .character-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .stat-bar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            color: #FFD700;
+            font-weight: bold;
+        }
+        
+        .stat-label-small {
+            color: #ccc;
+            font-size: 0.8rem;
+        }
+        
+        .map-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .map-title {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        
+        .location-btn {
+            padding: 10px;
+            background: rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .location-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+        }
+        
+        .location-btn.current {
+            background: rgba(255, 215, 0, 0.4);
+            border-color: #FFD700;
+        }
+        
+        .chat-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+        }
+        
+        .chat-message {
+            margin-bottom: 8px;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        
+        .chat-message.system {
+            background: rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+        }
+        
+        .chat-message.player {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        
+        .chat-input {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        
+        .chat-input button {
+            padding: 8px 16px;
+            background: #FFD700;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .online-users {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .online-title {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .user-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .user-item {
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .user-name {
+            color: #fff;
+        }
+        
+        .user-level {
+            color: #FFD700;
+            font-size: 0.9rem;
+        }
+        
+        /* Боевая система */
+        .battle-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .battle-title {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .enemy-panel {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .enemy-name {
+            color: #FFD700;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .enemy-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .hp-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .hp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #dc2626, #ef4444);
+            transition: width 0.3s ease;
+        }
+        
+        .stamina-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .stamina-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #16a34a, #22c55e);
+            transition: width 0.3s ease;
+        }
+        
+        .battle-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .action-btn {
+            padding: 15px;
+            background: rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .action-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .battle-log {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            height: 150px;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .log-entry {
+            margin-bottom: 5px;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        .log-entry.player {
+            color: #FFD700;
+        }
+        
+        .log-entry.enemy {
+            color: #dc2626;
+        }
+        
+        .log-entry.system {
+            color: #60a5fa;
+        }
+        
+        /* Анимации */
+        .damage-number {
+            position: absolute;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #dc2626;
+            pointer-events: none;
+            animation: damageFloat 1s ease-out forwards;
+        }
+        
+        @keyframes damageFloat {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .game-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .game-content {
+                flex-direction: column;
+            }
+            
+            .game-sidebar {
+                width: 100%;
+                height: auto;
+            }
+            
+            .battle-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Главная страница -->
+    <div id="main-page" class="container fade-in">
+        <div class="header">
+            <div class="logo">OSMANLI</div>
+            <div class="subtitle">Бесплатная ролевая онлайн игра</div>
+            <div class="description">
+                OSMANLI — это необъятный мир средневековых страстей Османской империи, воплощенный в MMORPG. 
+                Он не похож на другие бродилки — не только продуманностью процессов, игры. 
+                Сердце онлайн игры "OSMANLI" бьется в тысячах войнах, в которых сражаются тысячи игроков.
+            </div>
+        </div>
+        
+        <div class="game-container">
+            <div class="main-content">
+                <div class="game-section">
+                    <div class="section-title">
+                        🎮 Начать игру
+                    </div>
+                    <button class="btn" onclick="startGame()">НАЧАТЬ ИГРУ!</button>
+                </div>
+                
+                <div class="event-banner">
+                    <div class="event-text">
+                        13.10.2025 00:00 - 16.10.2025 00:00: Голосование на должность Султана Османской империи
+                    </div>
+                </div>
+                
+                <div class="news-section">
+                    <div class="section-title">
+                        📰 Последние новости игры
+                    </div>
+                    
+                    <div class="news-item">
+                        <div class="news-title">Эпическая АКЦИЯ на золотые монеты!</div>
+                        <div class="news-date">13.10.2025 13:18</div>
+                        <div class="news-content">
+                            Мастера-реконструкторы, совместно с Главами четырех городов Османской империи, ради представить вашему вниманию самую эпическую акцию на золотые монеты из всех, что видел OSMANLI! Следующие 2 недели вас ждут - драгоценные кубки и золотые монеты, героев за завивания гильд городов, бесплатная золотая клятвенная реакция с новым.
+                        </div>
+                    </div>
+                    
+                    <div class="news-item">
+                        <div class="news-title">Сумасшедшие голосящие кличики и Костры рябин!</div>
+                        <div class="news-date">12.10.2025 14:32</div>
+                        <div class="news-content">
+                            Сентябрь объявляется месяцем голосящих кличиков, сумасшедших дней и костров рябин! Храпья-Боксы, Знаки Сентября, торги на Черной рыбке, опасные харизматики, уперченный опыт, ежедневный Рейтинг, возврат на Черной рыбке и многое другое!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="login-panel">
+                    <div class="login-title">Вход в игру</div>
+                    <form onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label class="form-label">Имя:</label>
+                            <input type="text" class="form-input" placeholder="Введите имя персонажа" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Пароль:</label>
+                            <input type="password" class="form-input" placeholder="Введите пароль" required>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" class="checkbox" id="remember">
+                            <label class="checkbox-label" for="remember">Открыть в новом окне</label>
+                        </div>
+                        <button type="submit" class="btn btn-secondary">Войти</button>
+                        <div style="text-align: center; margin-top: 15px;">
+                            <a href="#" style="color: #FFD700; text-decoration: none; font-size: 0.9rem;">Забыли пароль?</a><br>
+                            <a href="#" style="color: #FFD700; text-decoration: none; font-weight: bold;">Регистрация</a>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="stats-panel">
+                    <div class="stats-title">📊 Статистика</div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="online-count">1,234</div>
+                            <div class="stat-label">Онлайн игроков</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">56,789</div>
+                            <div class="stat-label">Всего персонажей</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-panel">
+                    <div class="info-title">А знаете ли вы, что:</div>
+                    <div class="info-text">
+                        — под невинничество вы можете заходить в любую локацию, даже не подходя по скоромости.
+                    </div>
+                </div>
+                
+                <div class="info-panel">
+                    <div class="info-title">Рейтинг игры</div>
+                    <ul class="rating-list">
+                        <li>Гильдии и кланы</li>
+                        <li>Лидеры рефералльной программы</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Игровой интерфейс -->
+    <div id="game-interface" class="game-interface">
+        <div class="game-header">
+            <div class="game-logo">OSMANLI</div>
+            <div class="game-nav">
+                <button class="nav-btn active" onclick="showGameSection('map')">Карта</button>
+                <button class="nav-btn" onclick="showGameSection('battle')">Бой</button>
+                <button class="nav-btn" onclick="showGameSection('inventory')">Инвентарь</button>
+                <button class="nav-btn" onclick="showGameSection('character')">Персонаж</button>
+                <button class="nav-btn" onclick="showGameSection('chat')">Чат</button>
+                <button class="nav-btn" onclick="exitGame()">Выход</button>
+            </div>
+        </div>
+        
+        <div class="game-content">
+            <div class="game-main">
+                <div id="map-section" class="game-section-content">
+                    <div class="character-panel">
+                        <div class="character-name" id="character-name">Воин Демо</div>
+                        <div class="character-stats">
+                            <div class="stat-bar">
+                                <div class="stat-value" id="character-hp">100/100</div>
+                                <div class="stat-label-small">HP</div>
+                                <div class="hp-bar">
+                                    <div class="hp-fill" id="character-hp-bar" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-bar">
+                                <div class="stat-value" id="character-power">100/100</div>
+                                <div class="stat-label-small">Стамина</div>
+                                <div class="stamina-bar">
+                                    <div class="stamina-fill" id="character-stamina-bar" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-bar">
+                                <div class="stat-value" id="character-level">1</div>
+                                <div class="stat-label-small">Уровень</div>
+                            </div>
+                            <div class="stat-bar">
+                                <div class="stat-value" id="character-gold">100</div>
+                                <div class="stat-label-small">Золото</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="map-section">
+                        <div class="map-title">🗺️ Карта Османской империи</div>
+                        <div class="location-grid">
+                            <button class="location-btn current" onclick="travelTo('istanbul')">Стамбул</button>
+                            <button class="location-btn" onclick="travelTo('ankara')">Анкара</button>
+                            <button class="location-btn" onclick="travelTo('bursa')">Бурса</button>
+                            <button class="location-btn" onclick="travelTo('edirne')">Эдирне</button>
+                            <button class="location-btn" onclick="travelTo('trabzon')">Трабзон</button>
+                            <button class="location-btn" onclick="travelTo('market')">Базар</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="battle-section" class="game-section-content" style="display: none;">
+                    <div class="battle-section">
+                        <div class="battle-title">⚔️ Боевая система</div>
+                        
+                        <div class="enemy-panel" id="enemy-panel" style="display: none;">
+                            <div class="enemy-name" id="enemy-name">Противник</div>
+                            <div class="enemy-stats">
+                                <div class="stat-bar">
+                                    <div class="stat-value" id="enemy-hp">100/100</div>
+                                    <div class="stat-label-small">HP</div>
+                                    <div class="hp-bar">
+                                        <div class="hp-fill" id="enemy-hp-bar" style="width: 100%;"></div>
+                                    </div>
+                                </div>
+                                <div class="stat-bar">
+                                    <div class="stat-value" id="enemy-stamina">100/100</div>
+                                    <div class="stat-label-small">Стамина</div>
+                                    <div class="stamina-bar">
+                                        <div class="stamina-fill" id="enemy-stamina-bar" style="width: 100%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-bottom: 20px;">
+                                <div style="color: #FFD700; margin-bottom: 10px; font-weight: bold;">Атака:</div>
+                                <div class="battle-actions">
+                                    <button class="action-btn" onclick="performAttack('head')" id="attack-head">Голова</button>
+                                    <button class="action-btn" onclick="performAttack('chest')" id="attack-chest">Грудь</button>
+                                    <button class="action-btn" onclick="performAttack('belt')" id="attack-belt">Пояс</button>
+                                    <button class="action-btn" onclick="performAttack('legs')" id="attack-legs">Ноги</button>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top: 15px;">
+                                <div style="color: #FFD700; margin-bottom: 10px; font-weight: bold;">Защита:</div>
+                                <div class="battle-actions">
+                                    <button class="action-btn" onclick="performDefense('head')" id="defense-head">Голова</button>
+                                    <button class="action-btn" onclick="performDefense('chest')" id="defense-chest">Грудь</button>
+                                    <button class="action-btn" onclick="performDefense('belt')" id="defense-belt">Пояс</button>
+                                    <button class="action-btn" onclick="performDefense('legs')" id="defense-legs">Ноги</button>
+                                </div>
+                            </div>
+                            
+                            <div class="battle-log" id="battle-log">
+                                <div class="log-entry system">Выберите противника для боя</div>
+                            </div>
+                        </div>
+                        
+                        <p style="color: #ccc; margin-bottom: 20px;">
+                            Выберите противника для боя. Каждый противник имеет свой уровень сложности и награды.
+                        </p>
+                        <div class="location-grid">
+                            <button class="location-btn" onclick="startBattle('janissary')">Янычар (Ур. 3)</button>
+                            <button class="location-btn" onclick="startBattle('spahi')">Спахи (Ур. 5)</button>
+                            <button class="location-btn" onclick="startBattle('vizier')">Визирь (Ур. 8)</button>
+                            <button class="location-btn" onclick="startBattle('sultan')">Султан (Ур. 15)</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="inventory-section" class="game-section-content" style="display: none;">
+                    <div class="game-section">
+                        <div class="section-title">🎒 Инвентарь</div>
+                        <p style="color: #ccc; margin-bottom: 20px;">
+                            Здесь хранятся ваши предметы, оружие и доспехи.
+                        </p>
+                        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                            <p style="color: #FFD700; margin-bottom: 10px;">Ваши предметы:</p>
+                            <p style="color: #ccc;">• Ятаган новичка</p>
+                            <p style="color: #ccc;">• Кожаная броня</p>
+                            <p style="color: #ccc;">• Зелье лечения (x3)</p>
+                            <p style="color: #ccc;">• Золотые монеты (100)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="character-section" class="game-section-content" style="display: none;">
+                    <div class="game-section">
+                        <div class="section-title">👤 Персонаж</div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                            <p style="color: #FFD700; margin-bottom: 15px;">Характеристики:</p>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div style="color: #ccc;">Атака: <span style="color: #FFD700;">15</span></div>
+                                <div style="color: #ccc;">Защита: <span style="color: #FFD700;">12</span></div>
+                                <div style="color: #ccc;">Опыт: <span style="color: #FFD700;">0/100</span></div>
+                                <div style="color: #ccc;">Очки навыков: <span style="color: #FFD700;">5</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="chat-section" class="game-section-content" style="display: none;">
+                    <div class="game-section">
+                        <div class="section-title">💬 Чат</div>
+                        <div class="chat-section">
+                            <div class="chat-messages" id="chat-messages">
+                                <div class="chat-message system">Добро пожаловать в мир OSMANLI!</div>
+                                <div class="chat-message player">Игрок1: Привет всем!</div>
+                                <div class="chat-message player">Игрок2: Как дела?</div>
+                            </div>
+                            <div class="chat-input">
+                                <input type="text" placeholder="Введите сообщение..." id="chat-input">
+                                <button onclick="sendMessage()">Отправить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-sidebar">
+                <div class="online-users">
+                    <div class="online-title">👥 Онлайн игроки</div>
+                    <div class="user-list" id="user-list">
+                        <div class="user-item">
+                            <span class="user-name">Воин Демо</span>
+                            <span class="user-level">Ур. 1</span>
+                        </div>
+                        <div class="user-item">
+                            <span class="user-name">Маг Огня</span>
+                            <span class="user-level">Ур. 5</span>
+                        </div>
+                        <div class="user-item">
+                            <span class="user-name">Лучник</span>
+                            <span class="user-level">Ур. 3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentSection = 'map';
+        let character = {
+            name: 'Воин Демо',
+            level: 1,
+            hp: 100,
+            maxHp: 100,
+            stamina: 100,
+            maxStamina: 100,
+            gold: 100,
+            experience: 0,
+            attack: 15,
+            defense: 12
+        };
+        
+        let currentEnemy = null;
+        let isPlayerTurn = true;
+        let battleActive = false;
+        let playerDefense = null;
+        
+        function startGame() {
+            document.getElementById('main-page').style.display = 'none';
+            document.getElementById('game-interface').style.display = 'block';
+            updateCharacterDisplay();
+        }
+        
+        function exitGame() {
+            document.getElementById('game-interface').style.display = 'none';
+            document.getElementById('main-page').style.display = 'block';
+        }
+        
+        function showGameSection(section) {
+            // Скрыть все секции
+            const sections = document.querySelectorAll('.game-section-content');
+            sections.forEach(s => s.style.display = 'none');
+            
+            // Показать выбранную секцию
+            document.getElementById(section + '-section').style.display = 'block';
+            
+            // Обновить навигацию
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            currentSection = section;
+        }
+        
+        function updateCharacterDisplay() {
+            document.getElementById('character-name').textContent = character.name;
+            document.getElementById('character-hp').textContent = character.hp + '/' + character.maxHp;
+            document.getElementById('character-power').textContent = character.stamina + '/' + character.maxStamina;
+            document.getElementById('character-level').textContent = character.level;
+            document.getElementById('character-gold').textContent = character.gold;
+            
+            // Обновить бары
+            const hpPercentage = (character.hp / character.maxHp) * 100;
+            const staminaPercentage = (character.stamina / character.maxStamina) * 100;
+            document.getElementById('character-hp-bar').style.width = hpPercentage + '%';
+            document.getElementById('character-stamina-bar').style.width = staminaPercentage + '%';
+        }
+        
+        function travelTo(location) {
+            // Обновить активную кнопку локации
+            const locationBtns = document.querySelectorAll('.location-btn');
+            locationBtns.forEach(btn => btn.classList.remove('current'));
+            event.target.classList.add('current');
+            
+            // Показать сообщение о путешествии
+            addChatMessage('system', `Вы отправились в ${getLocationName(location)}`);
+        }
+        
+        function getLocationName(location) {
+            const names = {
+                'istanbul': 'Стамбул',
+                'ankara': 'Анкара',
+                'bursa': 'Бурса',
+                'edirne': 'Эдирне',
+                'trabzon': 'Трабзон',
+                'market': 'Базар'
+            };
+            return names[location] || location;
+        }
+        
+        function startBattle(enemyType) {
+            const enemies = {
+                'janissary': { name: 'Янычар', level: 3, hp: 80, maxHp: 80, stamina: 100, maxStamina: 100, attack: 20, defense: 15 },
+                'spahi': { name: 'Спахи', level: 5, hp: 120, maxHp: 120, stamina: 120, maxStamina: 120, attack: 25, defense: 18 },
+                'vizier': { name: 'Визирь', level: 8, hp: 150, maxHp: 150, stamina: 150, maxStamina: 150, attack: 30, defense: 22 },
+                'sultan': { name: 'Султан', level: 15, hp: 300, maxHp: 300, stamina: 200, maxStamina: 200, attack: 50, defense: 35 }
+            };
+            
+            currentEnemy = enemies[enemyType];
+            battleActive = true;
+            isPlayerTurn = true;
+            playerDefense = null;
+            
+            // Показать панель боя
+            document.getElementById('enemy-panel').style.display = 'block';
+            
+            // Обновить информацию о противнике
+            document.getElementById('enemy-name').textContent = currentEnemy.name;
+            document.getElementById('enemy-hp').textContent = currentEnemy.hp + '/' + currentEnemy.maxHp;
+            document.getElementById('enemy-stamina').textContent = currentEnemy.stamina + '/' + currentEnemy.maxStamina;
+            document.getElementById('enemy-hp-bar').style.width = '100%';
+            document.getElementById('enemy-stamina-bar').style.width = '100%';
+            
+            // Очистить лог боя
+            document.getElementById('battle-log').innerHTML = '';
+            addBattleLog('system', `Начинается бой с ${currentEnemy.name}!`);
+            addBattleLog('system', 'Атака: Голова, Грудь, Пояс, Ноги');
+            addBattleLog('system', 'Защита: Голова, Грудь, Пояс, Ноги');
+            
+            // Переключиться на секцию боя
+            showGameSection('battle');
+        }
+        
+        function performAttack(target) {
+            if (!battleActive || !isPlayerTurn || !currentEnemy) return;
+            
+            // Проверить стамину
+            if (character.stamina < 10) {
+                addBattleLog('system', 'Недостаточно стамины для атаки!');
+                return;
+            }
+            
+            // Вычислить урон
+            const baseDamage = character.attack;
+            const targetMultipliers = {
+                'head': 1.5,   // Голова - больше урона, но сложнее попасть
+                'chest': 1.0,  // Грудь - стандартный урон
+                'belt': 1.2,   // Пояс - хороший урон
+                'legs': 0.8    // Ноги - меньше урона, но легче попасть
+            };
+            
+            const hitChance = Math.random();
+            const targetChances = {
+                'head': 0.3,   // 30% шанс попасть в голову
+                'chest': 0.7,  // 70% шанс попасть в грудь
+                'belt': 0.6,   // 60% шанс попасть в пояс
+                'legs': 0.9    // 90% шанс попасть в ноги
+            };
+            
+            if (hitChance <= targetChances[target]) {
+                const damage = Math.floor(baseDamage * targetMultipliers[target] * (0.8 + Math.random() * 0.4));
+                currentEnemy.hp = Math.max(0, currentEnemy.hp - damage);
+                
+                // Трата стамины
+                character.stamina = Math.max(0, character.stamina - 10);
+                
+                addBattleLog('player', `Вы атакуете ${getTargetName(target)} и наносите ${damage} урона!`);
+                
+                // Показать анимацию урона
+                showDamageAnimation(damage);
+                
+                // Обновить HP противника и стамину игрока
+                updateEnemyHP();
+                updateCharacterDisplay();
+                
+                if (currentEnemy.hp <= 0) {
+                    addBattleLog('system', `Вы победили ${currentEnemy.name}!`);
+                    addBattleLog('system', 'Получен опыт и золото!');
+                    
+                    // Награда
+                    const exp = currentEnemy.level * 20;
+                    const gold = currentEnemy.level * 10;
+                    character.experience += exp;
+                    character.gold += gold;
+                    
+                    addBattleLog('system', `Получено: ${exp} опыта, ${gold} золота`);
+                    
+                    // Проверка повышения уровня
+                    if (character.experience >= 100) {
+                        character.level++;
+                        character.experience = 0;
+                        character.maxHp += 20;
+                        character.hp = character.maxHp;
+                        character.attack += 2;
+                        character.defense += 2;
+                        addBattleLog('system', `Поздравляем! Вы достигли ${character.level} уровня!`);
+                    }
+                    
+                    updateCharacterDisplay();
+                    battleActive = false;
+                    currentEnemy = null;
+                    
+                    setTimeout(() => {
+                        document.getElementById('enemy-panel').style.display = 'none';
+                    }, 3000);
+                } else {
+                    // Ход противника
+                    setTimeout(() => {
+                        enemyTurn();
+                    }, 1000);
+                }
+            } else {
+                addBattleLog('player', `Вы промахнулись по ${getTargetName(target)}!`);
+                setTimeout(() => {
+                    enemyTurn();
+                }, 1000);
+            }
+            
+            isPlayerTurn = false;
+        }
+        
+        function enemyTurn() {
+            if (!battleActive || !currentEnemy) return;
+            
+            // Противник выбирает случайную точку атаки
+            const enemyTargets = ['head', 'chest', 'belt', 'legs'];
+            const enemyTarget = enemyTargets[Math.floor(Math.random() * enemyTargets.length)];
+            
+            const damage = Math.floor(currentEnemy.attack * (0.8 + Math.random() * 0.4));
+            
+            // Проверить защиту игрока
+            let finalDamage = damage;
+            if (playerDefense === enemyTarget) {
+                finalDamage = Math.floor(damage * 0.3); // Защита снижает урон на 70%
+                addBattleLog('enemy', `${currentEnemy.name} атакует ${getTargetName(enemyTarget)}, но вы защищаетесь!`);
+                addBattleLog('system', `Получен урон: ${finalDamage} (защита сработала!)`);
+            } else {
+                addBattleLog('enemy', `${currentEnemy.name} атакует ${getTargetName(enemyTarget)} и наносит ${finalDamage} урона!`);
+            }
+            
+            character.hp = Math.max(0, character.hp - finalDamage);
+            updateCharacterDisplay();
+            
+            if (character.hp <= 0) {
+                addBattleLog('system', 'Вы проиграли бой!');
+                character.hp = character.maxHp; // Воскрешение
+                updateCharacterDisplay();
+                battleActive = false;
+                currentEnemy = null;
+                
+                setTimeout(() => {
+                    document.getElementById('enemy-panel').style.display = 'none';
+                }, 3000);
+            } else {
+                isPlayerTurn = true;
+                playerDefense = null; // Сброс защиты
+                addBattleLog('system', 'Ваш ход! Выберите атаку или защиту.');
+            }
+        }
+        
+        function performDefense(target) {
+            if (!battleActive || !isPlayerTurn || !currentEnemy) return;
+            
+            // Проверить стамину
+            if (character.stamina < 5) {
+                addBattleLog('system', 'Недостаточно стамины для защиты!');
+                return;
+            }
+            
+            // Трата стамины на защиту
+            character.stamina = Math.max(0, character.stamina - 5);
+            playerDefense = target;
+            
+            addBattleLog('player', `Вы защищаете ${getTargetName(target)}!`);
+            updateCharacterDisplay();
+            
+            // Ход противника
+            setTimeout(() => {
+                enemyTurn();
+            }, 1000);
+            
+            isPlayerTurn = false;
+        }
+        
+        function getTargetName(target) {
+            const names = {
+                'head': 'голову',
+                'chest': 'грудь',
+                'belt': 'пояс',
+                'legs': 'ноги'
+            };
+            return names[target] || target;
+        }
+        
+        function updateEnemyHP() {
+            const hpPercentage = (currentEnemy.hp / currentEnemy.maxHp) * 100;
+            document.getElementById('enemy-hp').textContent = currentEnemy.hp + '/' + currentEnemy.maxHp;
+            document.getElementById('enemy-hp-bar').style.width = hpPercentage + '%';
+        }
+        
+        function addBattleLog(type, message) {
+            const battleLog = document.getElementById('battle-log');
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log-entry ' + type;
+            logEntry.textContent = message;
+            battleLog.appendChild(logEntry);
+            battleLog.scrollTop = battleLog.scrollHeight;
+        }
+        
+        function showDamageAnimation(damage) {
+            const enemyPanel = document.getElementById('enemy-panel');
+            const damageDiv = document.createElement('div');
+            damageDiv.className = 'damage-number';
+            damageDiv.textContent = '-' + damage;
+            damageDiv.style.left = (40 + Math.random() * 20) + '%';
+            damageDiv.style.top = (30 + Math.random() * 20) + '%';
+            
+            enemyPanel.appendChild(damageDiv);
+            
+            setTimeout(() => {
+                damageDiv.remove();
+            }, 1000);
+        }
+        
+        function addChatMessage(type, message) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message ' + type;
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            if (message) {
+                addChatMessage('player', character.name + ': ' + message);
+                input.value = '';
+            }
+        }
+        
+        function handleLogin(event) {
+            event.preventDefault();
+            const username = event.target.querySelector('input[type="text"]').value;
+            if (username) {
+                character.name = username;
+                startGame();
+            }
+        }
+        
+        // Автоматическое обновление статистики
+        setInterval(() => {
+            const onlineCount = document.getElementById('online-count');
+            if (onlineCount) {
+                const currentCount = parseInt(onlineCount.textContent.replace(',', ''));
+                const newCount = currentCount + Math.floor(Math.random() * 10) - 5;
+                onlineCount.textContent = Math.max(1000, newCount).toLocaleString();
+            }
+        }, 30000);
+        
+        // Автоматическое восстановление HP и силы
+        setInterval(() => {
+            if (character.hp < character.maxHp && !battleActive) {
+                character.hp = Math.min(character.maxHp, character.hp + 1);
+                updateCharacterDisplay();
+            }
+            if (character.power < character.maxPower && !battleActive) {
+                character.power = Math.min(character.maxPower, character.power + 1);
+                updateCharacterDisplay();
+            }
+        }, 5000);
+        
+        // Обработка Enter в чате
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && e.target.id === 'chat-input') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
